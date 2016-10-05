@@ -4,7 +4,6 @@ public class MachineController {
 	
 	public static void main(String[] args) {
 		Machine machine = new Machine();
-		
 		int currentCycle= 0;
 		
 		Scanner scanner = new Scanner(System.in);
@@ -13,25 +12,25 @@ public class MachineController {
 		int numOfBlocks = scanner.nextInt();
 		for (int i=0; i<numOfBlocks; i++)
 		{
-			System.out.print("Enter the capacity for a block " + i +  ": ");
+			System.out.print("Enter the capacity for a block " + (int)(i + 1) +  ": ");
 			machine.addBlock(scanner.nextInt());
 		}
-		
-		
-		
+		machine.executeCycle(currentCycle);
 		System.out.println("\n\n" + machine.displayMachine());
-		//System.out.println("Lean machine throughput: " + machine.getLoad());
 		
-		while(true){
-			
-			
-			System.out.println("Cycle number: " + currentCycle);
-			System.out.println("\n\n" + machine.displayMachine());
+		System.out.println("\n\nPress ENTER to execute cycles, Press X and then ENTER to exit:");
+		
+		String userInput = scanner.nextLine();
+		userInput = scanner.nextLine();
+		while(userInput.isEmpty()){
 			currentCycle++;
-			scanner.nextLine();
+			machine.executeCycle(currentCycle);
+			System.out.println("\nCycle number: " + currentCycle);
+			System.out.println("\n" + machine.displayMachine());
+			userInput = scanner.nextLine();
 		}
 		
-		//scanner.close();
+		scanner.close();
 	}
 
 }

@@ -7,35 +7,38 @@ public class Machine {
 	private List<Block> blocks;
 	int load;
 	int throughPut;
-	public int getThroughPut() {
-		return throughPut;
-	}
-
-
-	public void setThroughPut(int throughPut) {
-		this.throughPut = throughPut;
-	}
-
-
-	public int getTotalOutput() {
-		return totalOutput;
-	}
-
-
-	public void setTotalOutput(int totalOutput) {
-		this.totalOutput = totalOutput;
-	}
-
 	int totalOutput;
 	
+	public List<Block> getBlocks() {
+		return blocks;
+	}
+
+	public void setBlocks(List<Block> blocks) {
+		this.blocks = blocks;
+	}
 	
 	public int getLoad() {
 		return load;
 	}
 
-
 	public void setLoad(int load) {
 		this.load = load;
+	}
+	
+	public int getThroughPut() {
+		return throughPut;
+	}
+
+	public void setThroughPut(int throughPut) {
+		this.throughPut = throughPut;
+	}
+
+	public int getTotalOutput() {
+		return totalOutput;
+	}
+	
+	public void setTotalOutput(int totalOutput) {
+		this.totalOutput = totalOutput;
 	}
 	
 	public Machine() {
@@ -44,23 +47,8 @@ public class Machine {
 		totalOutput = 0;
 	}
 
-
-	public List<Block> getBlocks() {
-		return blocks;
-	}
-
 	public void addBlock(int capacity) {
 		blocks.add(new Block(capacity));
-		//Block block = new Block(capacity);
-	/*	if (blocks.size() > 1)
-		{
-			int diff = getBlocks().get(getBlocks().size() - 1).getCapacity() - capacity;
-			if(diff < 0)
-				diff = 0;
-				
-			block.setDiffWithPrevCapacity(diff);
-		}*/
-		//blocks.add(block);
 	}
 
 	public String displayMachine() {
@@ -71,9 +59,17 @@ public class Machine {
 			if(i != 0) display.append("Queue size: " + blocks.get(i).getQueueSize() + "\n");
 			display.append("\n");
 		}
+		display.append("Throughput: " + getThroughPut());
+		display.append("\nTotal output: " + getTotalOutput());
+		
+		int totalInQueue = 0;
+		for (int i=0; i<blocks.size(); i++)
+			totalInQueue += blocks.get(i).getQueueSize();
+		display.append("\nTotal waiting in system: " + totalInQueue);
+		
+		display.append("\n");
 		return display.toString();
 	}
-
 
 	public void calculateQueueSize(int cycle) {
 		int newQueSize = 0;

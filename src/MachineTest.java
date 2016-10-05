@@ -27,7 +27,7 @@ public class MachineTest {
 	public void displayEmptyMachine()
 	{
 		Machine machine = new Machine();
-		assertEquals("", machine.displayMachine());
+		assertEquals("Throughput: 0\nTotal output: 0\nTotal waiting in system: 0\n", machine.displayMachine());
 	}
 	
 	@Test
@@ -36,7 +36,7 @@ public class MachineTest {
 		Machine machine = new Machine();
 		machine.addBlock(40);
 		machine.addBlock(10);
-		String result = "Block number: 0\nCapacity: 40\n\nBlock number: 1\nCapacity: 10\nQueue size: 0\n\n";
+		String result = "Block number: 0\nCapacity: 40\n\nBlock number: 1\nCapacity: 10\nQueue size: 0\n\nThroughput: 0\nTotal output: 0\nTotal waiting in system: 0\n";
 		assertEquals(result, machine.displayMachine());
 	}
 	

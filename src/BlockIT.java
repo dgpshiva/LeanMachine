@@ -12,6 +12,5 @@ public class BlockIT {
 		machine.addBlock(30);
 		String result = "Block number: 0\nCapacity: 45\n\nBlock number: 1\nCapacity: 40\nQueue size: 0\n\nBlock number: 2\nCapacity: 30\nQueue size: 0\n\n";
 		assertEquals(result, machine.displayMachine());
-		assertEquals(30, machine.getThroughPut());
 	}
 }
