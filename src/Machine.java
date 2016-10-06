@@ -54,7 +54,7 @@ public class Machine {
 	public String displayMachine() {
 		StringBuilder display = new StringBuilder();
 		for(int i = 0; i < blocks.size(); i++) {
-			display.append("Block number: " + i + "\n");
+			display.append("Block number: " + (int)i+1 + "\n");
 			display.append("Capacity: " + blocks.get(i).getCapacity() + "\n");
 			if(i != 0) display.append("Queue size: " + blocks.get(i).getQueueSize() + "\n");
 			display.append("\n");
@@ -92,15 +92,20 @@ public class Machine {
 		else if (cycleCount < blocks.size())
 		{
 			calculateQueueSize(cycleCount);
+			blocks.get(cycleCount).setInitialQueueSize(blocks.get(cycleCount).getQueueSize());
+			for (int i=1; i<cycleCount; i++)
+			{
+				blocks.get(i).setQueueSize(blocks.get(i).getQueueSize() + blocks.get(i).getInitialQueueSize());
+			}
 			setThroughPut(0);
 			setTotalOutput(0);
 			
 			if (cycleCount == blocks.size() - 1)
 			{
-				for (int i =1 ; i < blocks.size(); i++)
+		/*		for (int i =1 ; i < blocks.size(); i++)
 				{
 					blocks.get(i).setInitialQueueSize(blocks.get(i).getQueueSize());
-				}
+				}*/
 				setThroughPut(getLoad());
 				setTotalOutput(getThroughPut());
 			}

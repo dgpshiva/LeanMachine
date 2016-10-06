@@ -12,7 +12,7 @@ public class MachineController {
 		int numOfBlocks = scanner.nextInt();
 		for (int i=0; i<numOfBlocks; i++)
 		{
-			System.out.print("Enter the capacity for a block " + (int)(i + 1) +  ": ");
+			System.out.print("Enter the capacity for a block " + i +  ": ");
 			machine.addBlock(scanner.nextInt());
 		}
 		machine.executeCycle(currentCycle);
